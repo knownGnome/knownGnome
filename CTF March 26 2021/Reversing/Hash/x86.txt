@@ -1,0 +1,20 @@
+0x0804840b <+0>:push   ebp
+0x0804840c <+1>:mov    ebp,esp
+0x0804840e <+3>:sub    esp,0x4
+0x08048411 <+6>:mov    WORD PTR [ebp-0x2],0x0
+0x08048417 <+12>:mov    eax,DWORD PTR [ebp+0x8]
+0x0804841a <+15>:movzx  eax,WORD PTR [eax]
+0x0804841d <+18>:imul   ax,ax,0xaabb
+0x08048422 <+23>:mov    edx,eax
+0x08048424 <+25>:movzx  eax,WORD PTR [ebp-0x2]
+0x08048428 <+29>:xor    eax,edx
+0x0804842a <+31>:mov    WORD PTR [ebp-0x2],ax
+0x0804842e <+35>:add    DWORD PTR [ebp+0x8],0x1
+0x08048432 <+39>:mov    eax,DWORD PTR [ebp+0x8]
+0x08048435 <+42>:movzx  eax,BYTE PTR [eax]
+0x08048438 <+45>:test   al,al
+0x0804843a <+47>:jne    0x8048417 <hash+12>
+0x0804843c <+49>:movzx  eax,WORD PTR [ebp-0x2]
+0x08048440 <+53>:leave  
+0x08048441 <+54>:ret    
+

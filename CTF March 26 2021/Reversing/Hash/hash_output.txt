@@ -1,0 +1,20 @@
+$ ./hash "H"
+hash("H")=0x0498
+$ ./hash "He"
+hash("He")=0x905f
+$ ./hash "Hel"
+hash("Hel")=0xf2bb
+$ ./hash "Hell"
+hash("Hell")=0x185f
+$ ./hash "Hello"
+hash("Hello")=0x024a
+$ ./hash "Hello "
+hash("Hello ")=0x352a
+$ ./hash "Hello W"
+hash("Hello W")=0x83a7
+$ ./hash "Hello Wo"
+hash("Hello Wo")=0x9bb2
+$ ./hash "Hello Wor"
+hash("Hello Wor")=0xd6f4
+$ ./hash "Hello Worl"
+hash("Hello Worl")=0x3c10

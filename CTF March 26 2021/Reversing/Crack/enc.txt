@@ -1,0 +1,13 @@
+for(int i=0;i<112;i+=4){
+	unsigned int * p =  (unsigned int *) &(plain[i]);
+	unsigned int * c =  (unsigned int *) &(secret[i]);
+
+	*c = (*p ^ 0Xffffffff);
+	*c =
+		(*c & 0xff000000) >> 24 |
+		(*c & 0x00ff0000) >> 8  |
+		(*c & 0x0000ff00) << 8  |
+		(*c & 0x000000ff) << 24;
+
+	*c ^= 0xdeadbeef;
+}
