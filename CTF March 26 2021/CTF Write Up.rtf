@@ -1,0 +1,101 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Calibri;}}
+{\colortbl ;\red0\green0\blue255;}
+{\*\generator Riched20 10.0.19041}\viewkind4\uc1 
+\pard\sa200\sl276\slmult1\b\f0\fs24\lang9 User Name:  \tab Kyle_Smida: !SugarBooger726\par
+\tab\tab kyle_s - PW: 77\par
+\par
+Programming:\fs22\par
+\tab - Interpreter - 75\par
+\tab\tab\b0 Message:  "See the README for instructions."\par
+\tab\tab Files:  input_stream.bin - interpreter.h - README.md\b\par
+\tab - Software Development - 75\par
+\tab\tab\b0 Message:  "See README enclosed in zip file. DM @ENS Quinn Mangendanz and @ENS Teddy Kim on the slack a zip file of your solution for points. No flag."\par
+\tab\tab Files:  softwaredev.zip\b\par
+\tab - Performance - 300\par
+\tab\tab\b0 Message:  "See README. Maxiumum of 300 points. DM a zip file of your solution to @ENS Quinn Magendanz on the slack. No flag."\par
+\tab\tab Files:  benchmark - checker.py - README.md\b\par
+\fs24 Reversing:\fs22\par
+\tab - Crack - 75\par
+\tab\tab\b0 Message:  "The flag is encrypted in the hex string given in secret.txt. It was encrypted by the routine in enc.txt. Reverse the encryption routine to crack the flag!"\par
+\tab\tab Files:  secret.txt - enc.txt\b\par
+\tab - quackme1 - 100\par
+\tab\tab\b0 Message:  "Can you deal with the Duck Web? Get us the flag!"\par
+\tab\tab Files:  main\b\par
+\tab - Hash - 125\par
+\tab\tab\b0 Message:  "We found x86 code that was used as a hashing function in x86.txt. Create the equivalent C code from the x86 code, and use it to hash the string "Hello World." The resulting hash value is the flag. To help you, starter_code.c is provided as a template to reconstruct the x86 code. Additionally, in hash_output.txt, there are original hash outputs for the substrings of "Hello World" so that you can see if you are on the right track."\par
+\tab\tab Files:  x86.txt - starter_code.c - hash_output.txt\b\par
+\tab - quackme2 - 150\par
+\tab\tab\b0 Message:  "The duck puns continue. Can you crack, I mean quack this program as well?"\par
+\tab\tab Files:  quackme\b\par
+\fs24 Pwn:\fs22\par
+\tab - Win - 75\par
+\b0\tab\tab Message:  "Can you figure out how to win this challenge? Check it out at cweaccessionsctf.com:1337."\par
+\tab\tab Files:  win\b\par
+\tab - Shell - 100\par
+\tab\tab\b0 Message:  "I see that NX is disabled once again on this binary......check it out at cweaccessionsctf.com:1370.\par
+Note: ASLR is NOT disabled on the server. However, it might be easier in the problem to start out with ASLR disabled on your local machine. Check this out to disable it on your local machine: {{\field{\*\fldinst{HYPERLINK https://askubuntu.com/questions/318315/how-can-i-temporarily-disable-aslr-address-space-layout-randomization }}{\fldrslt{https://askubuntu.com/questions/318315/how-can-i-temporarily-disable-aslr-address-space-layout-randomization\ul0\cf0}}}}\f0\fs22 "\par
+\par
+\tab\tab Files:  shell\b\par
+\tab - Canary - 125\par
+\tab\tab\b0 Message: "I see that this binary might have a little birdie nesting in it. Can you figure out how to get past it to get to the flag? Check it out at cweaccessionsctf.com:1360."\par
+\tab\tab File: canary\b\par
+\fs24 Forensics:\fs22\par
+\tab - Rabbit Hole - 75\par
+\b0\tab\tab Message: "We received a wierd email. We deleted it, but you can look at it! We saved you a copy."\par
+\tab\tab File: email.txt\par
+\tab\tab Solution: \b\par
+\tab - File Ninja - 110\par
+\tab\tab\b0 Message:  "One of our new employees has stopped showing up to work. We think he took the job just to steal our flag, but we have no idea how he got it off his work laptop - we blocked access to most of the internet except developer specific sites. See if you can figure out how he got the flag off the system by analyzing a image of his laptop's filesystem."\par
+\tab\tab Hint:  "The flag is probably BASE-64 encoded as we screen online traffice for the flag in plaintext format."\par
+\tab\tab File:  backup.iso\par
+\tab\tab Flag:  flag\{g1t_15_c0mplex_pbtrg3hv6d\}\par
+\tab\tab Solution:  I looked around for a bit in the backup.iso file on Windows, dropping random files in Notepad++.  I eventually dropped the .iso file in Kali and extracted it to a separate file.  I ran the command "grep -r flag [extracted backup.iso folder]".  Scrolling through, in DOCUMENT/WORK_FOL/_GIT/CONFIG the line of text "flag = ZmxhZ3tnMXRfMTVfYzBtcGxleF9wYnRyZzNodjZkfQ==" popped up at the end.  I tried dropping it in the answer box as it was but didn't work.  I then remembered the hing about base64 encoding and used base64decode.org to decode the flag and got the above flag as the answer.\par
+\tab\tab {{\field{\*\fldinst{HYPERLINK https://www.base64decode.org/ }}{\fldrslt{https://www.base64decode.org/\ul0\cf0}}}}\b\f0\fs22\par
+\tab - The New 2.0 - 110\par
+\tab\tab\b0 Message: "We have been surveilling a known hacker's internet traffic. He mostly just looks at online hacking forums. However, we think he's transmitted a flag to an associate through some means. We can't figure it out, can you?"\par
+\tab\tab Hint:  "You can decrypt TLSv1.2+ traffic using a keylog file which is also provided with the .pcap file"\par
+\tab\tab File: capture.pcapng - sslkeylog.log\b\par
+\fs24 Crypto:\b0\fs22\par
+\tab\b - Classic - 50\b0\par
+\tab\tab Message: "Decode me! Even Caesar might have had a little trouble."\par
+\tab\tab File: classic.txt\par
+\tab\tab Solution: \par
+\tab\tab\tab {{\field{\*\fldinst{HYPERLINK https://cryptii.com/pipes/caesar-cipher }}{\fldrslt{https://cryptii.com/pipes/caesar-cipher\ul0\cf0}}}}\f0\fs22\par
+\tab\tab\tab Alphabet: !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz\{|\}~\par
+\tab\tab\tab Shift: 77\par
+\tab\tab\tab Flag: Caes@r_c0uldnt_sH!ft_L!ke_this\par
+\tab\b - Cipher - 75\par
+\tab\tab\b0 Message: "Decrypt the ciphertext!"\par
+\tab\tab File: cipher.txt\par
+\tab\tab Solution: \par
+\tab\tab\tab Googled the N and e and found a lot of results talking about 65537 being used in RSA so I looked for a tool to decipher RSA with just the N and e and found the below tool.  Once installed on my Kali box, I ran ./RsaCtfTool.py --uncipher [the cipher text] -n [the N] -e [the e] and got an error about the ciphertext not being an INT base 10.  Looking at it I saw a's, b's, c's, d's, e's and f's and figured it was probably in hex.  So, I converted to decimal and reran the command and got a bunch of "\\x00"'s and the below key at the end of it all.\b\par
+\tab\tab\tab {\b0{\field{\*\fldinst{HYPERLINK https://github.com/Ganapati/RsaCtfTool }}{\fldrslt{https://github.com/Ganapati/RsaCtfTool\ul0\cf0}}}}\b0\f0\fs22\par
+\tab\tab\tab Installed above \par
+\tab\tab\tab Flag: Ya8lzPVM5Pgn9qKZ\par
+\tab  \b - Rolled - 100\par
+\tab\tab\b0 Message:  "Do you think you can break this crypto that we rolled? Check it out at cweaccessionsctf.com:1350"\par
+\tab\tab Hint:  "The flag is all lowercase."\par
+\tab\tab File:  rolled.txt\par
+\b\fs24 Misc\b0\fs22\par
+\b\tab - All the IPs - 50\par
+\tab\tab\b0 Message: "We need you to perform geolocation analysis on this list of IPs. We have attributed it to a malicious proxy network. The flag is the prevalent country of origin."\par
+\tab\tab Hint: "Offline geolocation IP analysis can be scripted with a python package or two."\par
+\tab\tab File: ips.txt\par
+\tab\tab Flag: Brazil\par
+\tab\tab Solution:  \par
+\tab\tab\tab I Googled "free ip bulk list geolocation" and found the below address and pasted all the IPs from the file into the site.  At the very bottom is a "Host distribution by country" pie chart and Brazil was the largest piece.\par
+\tab\tab\tab {{\field{\*\fldinst{HYPERLINK https://www.infobyip.com/ipbulklookup.php }}{\fldrslt{https://www.infobyip.com/ipbulklookup.php\ul0\cf0}}}}\b\f0\fs22\par
+\tab - Of Least Significance - 75\par
+\tab\tab\b0 Message:  "There's a flag hidden inside the given text! Can you figure out how to extract it?\par
+\tab\tab Hint:  "I would do some research on steganography."\par
+\tab\tab File:  theLeastSignificant.txt\b\par
+\tab - Socketz - 75\par
+\tab\tab\b0 Message:  "Go to cweaccessionsctf.com:1340 and see if you can get a flag! I'd recommend you'd script this though, unless you really want to do 500 math problems."\par
+\par
+\b\par
+\par
+\par
+\par
+\par
+}
+ 
