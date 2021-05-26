@@ -1,0 +1,92 @@
+Programming:
+	- Interpreter - 75
+		Message:  "See the README for instructions."
+		Files:  input_stream.bin - interpreter.h - README.md
+	- Software Development - 75
+		Message:  "See README enclosed in zip file. DM @ENS Quinn Mangendanz and @ENS Teddy Kim on the slack a zip file of your solution for points. No flag."
+		Files:  softwaredev.zip
+	- Performance - 300
+		Message:  "See README. Maxiumum of 300 points. DM a zip file of your solution to @ENS Quinn Magendanz on the slack. No flag."
+		Files:  benchmark - checker.py - README.md
+Reversing:
+	- Crack - 75
+		Message:  "The flag is encrypted in the hex string given in secret.txt. It was encrypted by the routine in enc.txt. Reverse the encryption routine to crack the flag!"
+		Files:  secret.txt - enc.txt
+	- quackme1 - 100
+		Message:  "Can you deal with the Duck Web? Get us the flag!"
+		Files:  main
+	- Hash - 125
+		Message:  "We found x86 code that was used as a hashing function in x86.txt. Create the equivalent C code from the x86 code, and use it to hash the string "Hello World." The resulting hash value is the flag. To help you, starter_code.c is provided as a template to reconstruct the x86 code. Additionally, in hash_output.txt, there are original hash outputs for the substrings of "Hello World" so that you can see if you are on the right track."
+		Files:  x86.txt - starter_code.c - hash_output.txt
+	- quackme2 - 150
+		Message:  "The duck puns continue. Can you crack, I mean quack this program as well?"
+		Files:  quackme
+Pwn:
+	- Win - 75
+		Message:  "Can you figure out how to win this challenge? Check it out at cweaccessionsctf.com:1337."
+		Files:  win
+	- Shell - 100
+		Message:  "I see that NX is disabled once again on this binary......check it out at cweaccessionsctf.com:1370.
+Note: ASLR is NOT disabled on the server. However, it might be easier in the problem to start out with ASLR disabled on your local machine. Check this out to disable it on your local machine: https://askubuntu.com/questions/318315/how-can-i-temporarily-disable-aslr-address-space-layout-randomization"
+
+		Files:  shell
+	- Canary - 125
+		Message: "I see that this binary might have a little birdie nesting in it. Can you figure out how to get past it to get to the flag? Check it out at cweaccessionsctf.com:1360."
+		File: canary
+Forensics:
+	- Rabbit Hole - 75
+		Message: "We received a wierd email. We deleted it, but you can look at it! We saved you a copy."
+		File: email.txt
+		Solution: 
+	- File Ninja - 110
+		Message:  "One of our new employees has stopped showing up to work. We think he took the job just to steal our flag, but we have no idea how he got it off his work laptop - we blocked access to most of the internet except developer specific sites. See if you can figure out how he got the flag off the system by analyzing a image of his laptop's filesystem."
+		Hint:  "The flag is probably BASE-64 encoded as we screen online traffice for the flag in plaintext format."
+		File:  backup.iso
+		Flag:  flag{g1t_15_c0mplex_pbtrg3hv6d}
+		Solution:  I looked around for a bit in the backup.iso file on Windows, dropping random files in Notepad++.  I eventually dropped the .iso file in Kali and extracted it to a separate file.  I ran the command "grep -r flag [extracted backup.iso folder]".  Scrolling through, in DOCUMENT/WORK_FOL/_GIT/CONFIG the line of text "flag = ZmxhZ3tnMXRfMTVfYzBtcGxleF9wYnRyZzNodjZkfQ==" popped up at the end.  I tried dropping it in the answer box as it was but didn't work.  I then remembered the hing about base64 encoding and used base64decode.org to decode the flag and got the above flag as the answer.
+		https://www.base64decode.org/
+	- The New 2.0 - 110
+		Message: "We have been surveilling a known hacker's internet traffic. He mostly just looks at online hacking forums. However, we think he's transmitted a flag to an associate through some means. We can't figure it out, can you?"
+		Hint:  "You can decrypt TLSv1.2+ traffic using a keylog file which is also provided with the .pcap file"
+		File: capture.pcapng - sslkeylog.log
+Crypto:
+	- Classic - 50
+		Message: "Decode me! Even Caesar might have had a little trouble."
+		File: classic.txt
+		Solution: 
+			https://cryptii.com/pipes/caesar-cipher
+			Alphabet: !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~
+			Shift: 77
+			Flag: Caes@r_c0uldnt_sH!ft_L!ke_this
+	- Cipher - 75
+		Message: "Decrypt the ciphertext!"
+		File: cipher.txt
+		Solution: 
+			Googled the N and e and found a lot of results talking about 65537 being used in RSA so I looked for a tool to decipher RSA with just the N and e and found the below tool.  Once installed on my Kali box, I ran ./RsaCtfTool.py --uncipher [the cipher text] -n [the N] -e [the e] and got an error about the ciphertext not being an INT base 10.  Looking at it I saw a's, b's, c's, d's, e's and f's and figured it was probably in hex.  So, I converted to decimal and reran the command and got a bunch of "\x00"'s and the below key at the end of it all.
+			https://github.com/Ganapati/RsaCtfTool
+			Installed above 
+			Flag: Ya8lzPVM5Pgn9qKZ
+	 - Rolled - 100
+		Message:  "Do you think you can break this crypto that we rolled? Check it out at cweaccessionsctf.com:1350"
+		Hint:  "The flag is all lowercase."
+		File:  rolled.txt
+Misc
+	- All the IPs - 50
+		Message: "We need you to perform geolocation analysis on this list of IPs. We have attributed it to a malicious proxy network. The flag is the prevalent country of origin."
+		Hint: "Offline geolocation IP analysis can be scripted with a python package or two."
+		File: ips.txt
+		Flag: Brazil
+		Solution:  
+			I Googled "free ip bulk list geolocation" and found the below address and pasted all the IPs from the file into the site.  At the very bottom is a "Host distribution by country" pie chart and Brazil was the largest piece.
+			https://www.infobyip.com/ipbulklookup.php
+	- Of Least Significance - 75
+		Message:  "There's a flag hidden inside the given text! Can you figure out how to extract it?
+		Hint:  "I would do some research on steganography."
+		File:  theLeastSignificant.txt
+	- Socketz - 75
+		Message:  "Go to cweaccessionsctf.com:1340 and see if you can get a flag! I'd recommend you'd script this though, unless you really want to do 500 math problems."
+
+
+
+
+
