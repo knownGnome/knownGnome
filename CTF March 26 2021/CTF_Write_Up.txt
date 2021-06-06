@@ -70,6 +70,11 @@ Crypto:
 		Message:  "Do you think you can break this crypto that we rolled? Check it out at cweaccessionsctf.com:1350"
 		Hint:  "The flag is all lowercase."
 		File:  rolled.txt
+		Notes:	
+			- Used (https://www.boxentriq.com/code-breaking/cipher-identifier#adfgvx-cipher) to possibly identify the type of cipher
+				-- Was identified as an ADFGVX Cipher.  ADFGVX Cipher is a type of substitution cipher using a Polybius quare.  (https://en.wikipedia.org/wiki/Polybius_square)
+				-- Used (https://www.dcode.fr/adfgvx-cipher) to try and break it.
+				-- Generic decode without knowing the key is  jv7ph4lucuxgjl1zpix02q5hpg0ztnwbibmmv6lh7b  
 Misc
 	- All the IPs - 50
 		Message: "We need you to perform geolocation analysis on this list of IPs. We have attributed it to a malicious proxy network. The flag is the prevalent country of origin."
