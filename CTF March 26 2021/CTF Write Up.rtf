@@ -1,9 +1,8 @@
-{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Calibri;}}
-{\colortbl ;\red0\green0\blue255;}
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil Consolas;}}
+{\colortbl ;\red0\green0\blue0;\red127\green0\blue85;\red232\green242\blue254;\red100\green40\blue128;\red42\green0\blue255;\red0\green0\blue255;}
 {\*\generator Riched20 10.0.19041}\viewkind4\uc1 
-
-
-
+\pard\sa200\sl276\slmult1\b\f0\fs24\lang9 
+\par
 Programming:\fs22\par
 \tab - Interpreter - 75\par
 \tab\tab\b0 Message:  "See the README for instructions."\par
@@ -17,7 +16,53 @@ Programming:\fs22\par
 \fs24 Reversing:\fs22\par
 \tab - Crack - 75\par
 \tab\tab\b0 Message:  "The flag is encrypted in the hex string given in secret.txt. It was encrypted by the routine in enc.txt. Reverse the encryption routine to crack the flag!"\par
-\tab\tab Files:  secret.txt - enc.txt\b\par
+\tab\tab Files:  secret.txt - enc.txt\par
+\tab\tab Flag (Unattempted):  'A lot of hacking is playing with other people, you know, getting them to do strange things.' - Steve Wozniak\par
+\tab\tab Solution:  Looking at the encryption algorithm in enc.txt, it looked a lot like C, based on the use of pointers and syntax.  I created a simple C program skeleton to start, using Eclipse.  Including stdio.h and stdlib.h since they are most commonly used headers.  In main I created variables for secret, plain, p and c.  I zeroed out secret and plain, pasted the encryption function in the program and then printed out plain and secret after the encryption so see what would happen.  I noticed in the encrypted text, that there was a repeating pattern to the it.  I proceeded to create a second FOR loop for decryption, and printing out the decrypted text.  I commented out all the lines in the encryption loop and added them back in, one operation at a time.  Every operation I uncommented, I would try and figure out the opposite and add it to the decryption loop.  About halfway through I started having problems where the it was decrypting back to plain text.  I came to the realization I had to put the last operation in the encryption loop as the first in the decryption loop, e.g. work bottom up from the encryption loop.  I would eventually settle on the following code segment.\par
+\cf1\f1\fs24\tab\cf2\b for\cf1\b0 (\cf2\b int\cf1\b0  i=0;i<112;i+=4)\{\cf0\par
+\cf1\tab\tab c =  (\cf2\b unsigned\cf1\b0  \cf2\b int\cf1\b0  *) &(secret[i]);\cf0\par
+\cf1\tab\tab *c ^= 0xdeadbeef;\cf0\par
+\cf1\tab\tab *c =\cf0\par
+\cf1\tab\tab\tab\tab ((*c >> 24) | 0xffffff00) &\cf0\par
+\cf1\tab\tab\tab\tab ((*c >> 8)  | 0xffff00ff) &\cf0\par
+\cf1\tab\tab\tab\tab ((*c << 8)  | 0xff00ffff) &\cf0\par
+\cf1\tab\tab\tab\tab ((*c << 24) | 0x00ffffff);\cf0\par
+\cf1\tab\tab *c = (*c ^ 0Xffffffff);\cf0\par
+\cf1\tab\}\cf0\f0\fs22\par
+This code segment returned the bytes back to the original zeroed out array I was using to test with.  I then added the secret array in named "\cf2\highlight3\b\f1\fs24 char\cf1\b0  secret2[112]\cf0\highlight0\f0\fs22 ", which I set as the secret and  text and did the same process as above, print it out, decrypt it, and see what I got.  I used the following code segment.\par
+
+\pard\sl240\slmult1\cf4\b\f1\fs24 printf\cf1\b0 (\cf5 "\\n\\n\\nEncrypted Text"\cf1 );\cf0\par
+\cf1\tab\cf4\b printf\cf1\b0 (\cf5 "\\n"\cf1 );\cf0\par
+\cf1\tab\cf2\b for\cf1\b0 (\cf2\b int\cf1\b0  i=0;i<112;i+=1)\{\cf0\par
+\cf1\tab\tab counter++;\cf0\par
+\cf1\tab\tab\cf4\b printf\cf1\b0 (\cf5 "%x"\cf1 , secret2[i]);\cf0\par
+\cf1\tab\}\cf0\par
+\par
+\cf1\tab\cf2\b for\cf1\b0 (\cf2\b int\cf1\b0  i=0;i<112;i+=4)\{\cf0\par
+\cf1\tab\tab c =  (\cf2\b unsigned\cf1\b0  \cf2\b int\cf1\b0  *) &(secret2[i]);\cf0\par
+\cf1\tab\tab *c ^= 0xdeadbeef;\cf0\par
+\par
+\cf1\tab\tab *c =\cf0\par
+\cf1\tab\tab\tab\tab ((*c >> 24) | 0xffffff00) &\cf0\par
+\cf1\tab\tab\tab\tab ((*c >> 8)  | 0xffff00ff) &\cf0\par
+\cf1\tab\tab\tab\tab ((*c << 8)  | 0xff00ffff) &\cf0\par
+\cf1\tab\tab\tab\tab ((*c << 24) | 0x00ffffff);\cf0\par
+\par
+\cf1\tab\tab *c = (*c ^ 0Xffffffff);\cf0\par
+\par
+\cf1\tab\}\cf0\par
+\par
+\cf1\tab\cf4\b printf\cf1\b0 (\cf5 "\\n\\nDecrypted Text"\cf1 );\cf0\par
+\cf1\tab\cf4\b printf\cf1\b0 (\cf5 "\\n"\cf1 );\cf0\par
+\cf1\tab\cf2\b for\cf1\b0 (\cf2\b int\cf1\b0  i=0;i<112;i+=1)\{\cf0\par
+\cf1\tab\tab counter++;\cf0\par
+\cf1\tab\tab\cf4\b printf\cf1\b0 (\cf5 "%x"\cf1 , secret2[i]);\cf0\par
+\cf1\tab\}\par
+\cf0\f0\fs22\par
+
+\pard\sa200\sl276\slmult1 The above code segment produced "\cf1\f1\fs24 2741206c6f74206f66206861636b696e6720697320706c6179696e672077697468206f746865722070656f706c652c20796f75206b6e6f772c2067657474696e67207468656d20746f20646f20737472616e6765207468696e67732e27202d20537465766520576f7a6e69616b000\cf0\f0\fs22 " from the decryption.  I noticed a lot of the values were in the same range.  I looked at an Ascii table and it looked like the first several values all fell in the printable range of characters.  I wrote another print statement, but formated it as a character instead of hex.\par
+\par
+The above the print statement produced the following "\cf1\f1\fs24 'A lot of hacking is playing with other people, you know, getting them to do strange things.' - Steve Wozniak \cf0\f0\fs22 "\b\par
 \tab - quackme1 - 100\par
 \tab\tab\b0 Message:  "Can you deal with the Duck Web? Get us the flag!"\par
 \tab\tab Files:  main\b\par
@@ -76,6 +121,12 @@ Note: ASLR is NOT disabled on the server. However, it might be easier in the pro
 \tab\tab\b0 Message:  "Do you think you can break this crypto that we rolled? Check it out at cweaccessionsctf.com:1350"\par
 \tab\tab Hint:  "The flag is all lowercase."\par
 \tab\tab File:  rolled.txt\par
+\tab\tab Notes:\tab\par
+\tab\tab\tab - Used ({{\field{\*\fldinst{HYPERLINK https://www.boxentriq.com/code-breaking/cipher-identifier#adfgvx-cipher }}{\fldrslt{https://www.boxentriq.com/code-breaking/cipher-identifier#adfgvx-cipher\ul0\cf0}}}}\f0\fs22 ) to possibly identify the type of cipher\par
+\tab\tab\tab\tab -- Was identified as an ADFGVX Cipher.  ADFGVX Cipher is a type of substitution cipher using a Polybius quare.  ({{\field{\*\fldinst{HYPERLINK https://en.wikipedia.org/wiki/Polybius_square }}{\fldrslt{https://en.wikipedia.org/wiki/Polybius_square\ul0\cf0}}}}\f0\fs22 )\par
+\tab\tab\tab\tab -- Used ({{\field{\*\fldinst{HYPERLINK https://www.dcode.fr/adfgvx-cipher }}{\fldrslt{https://www.dcode.fr/adfgvx-cipher\ul0\cf0}}}}\f0\fs22 ) to try and break it.\par
+\tab\tab\tab\tab -- Generic decode without knowing the key is  jv7ph4lucuxgjl1zpix02q5hpg0ztnwbibmmv6lh7b \par
+\tab\tab\tab\tab -- Will try that as the key next CTF\par
 \b\fs24 Misc\b0\fs22\par
 \b\tab - All the IPs - 50\par
 \tab\tab\b0 Message: "We need you to perform geolocation analysis on this list of IPs. We have attributed it to a malicious proxy network. The flag is the prevalent country of origin."\par
@@ -98,4 +149,4 @@ Note: ASLR is NOT disabled on the server. However, it might be easier in the pro
 \par
 \par
 }
-�
+ 
