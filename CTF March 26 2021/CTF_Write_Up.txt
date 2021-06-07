@@ -12,6 +12,50 @@ Reversing:
 	- Crack - 75
 		Message:  "The flag is encrypted in the hex string given in secret.txt. It was encrypted by the routine in enc.txt. Reverse the encryption routine to crack the flag!"
 		Files:  secret.txt - enc.txt
+		Flag (Unattempted):  'A lot of hacking is playing with other people, you know, getting them to do strange things.' - Steve Wozniak
+		Solution:  Looking at the encryption algorithm in enc.txt, it looked a lot like C, based on the use of pointers and syntax.  I created a simple C program skeleton to start, using Eclipse.  Including stdio.h and stdlib.h since they are most commonly used headers.  In main I created variables for secret, plain, p and c.  I zeroed out secret and plain, pasted the encryption function in the program and then printed out plain and secret after the encryption so see what would happen.  I noticed in the encrypted text, that there was a repeating pattern to the it.  I proceeded to create a second FOR loop for decryption, and printing out the decrypted text.  I commented out all the lines in the encryption loop and added them back in, one operation at a time.  Every operation I uncommented, I would try and figure out the opposite and add it to the decryption loop.  About halfway through I started having problems where the it was decrypting back to plain text.  I came to the realization I had to put the last operation in the encryption loop as the first in the decryption loop, e.g. work bottom up from the encryption loop.  I would eventually settle on the following code segment.
+	for(int i=0;i<112;i+=4){
+		c =  (unsigned int *) &(secret[i]);
+		*c ^= 0xdeadbeef;
+		*c =
+				((*c >> 24) | 0xffffff00) &
+				((*c >> 8)  | 0xffff00ff) &
+				((*c << 8)  | 0xff00ffff) &
+				((*c << 24) | 0x00ffffff);
+		*c = (*c ^ 0Xffffffff);
+	}
+This code segment returned the bytes back to the original zeroed out array I was using to test with.  I then added the secret array in named "char secret2[112]", which I set as the secret and  text and did the same process as above, print it out, decrypt it, and see what I got.  I used the following code segment.
+printf("\n\n\nEncrypted Text");
+	printf("\n");
+	for(int i=0;i<112;i+=1){
+		counter++;
+		printf("%x", secret2[i]);
+	}
+
+	for(int i=0;i<112;i+=4){
+		c =  (unsigned int *) &(secret2[i]);
+		*c ^= 0xdeadbeef;
+
+		*c =
+				((*c >> 24) | 0xffffff00) &
+				((*c >> 8)  | 0xffff00ff) &
+				((*c << 8)  | 0xff00ffff) &
+				((*c << 24) | 0x00ffffff);
+
+		*c = (*c ^ 0Xffffffff);
+
+	}
+
+	printf("\n\nDecrypted Text");
+	printf("\n");
+	for(int i=0;i<112;i+=1){
+		counter++;
+		printf("%x", secret2[i]);
+	}
+
+The above code segment produced "2741206c6f74206f66206861636b696e6720697320706c6179696e672077697468206f746865722070656f706c652c20796f75206b6e6f772c2067657474696e67207468656d20746f20646f20737472616e6765207468696e67732e27202d20537465766520576f7a6e69616b000" from the decryption.  I noticed a lot of the values were in the same range.  I looked at an Ascii table and it looked like the first several values all fell in the printable range of characters.  I wrote another print statement, but formated it as a character instead of hex.
+
+The above the print statement produced the following "'A lot of hacking is playing with other people, you know, getting them to do strange things.' - Steve Wozniak "
 	- quackme1 - 100
 		Message:  "Can you deal with the Duck Web? Get us the flag!"
 		Files:  main
@@ -74,7 +118,8 @@ Crypto:
 			- Used (https://www.boxentriq.com/code-breaking/cipher-identifier#adfgvx-cipher) to possibly identify the type of cipher
 				-- Was identified as an ADFGVX Cipher.  ADFGVX Cipher is a type of substitution cipher using a Polybius quare.  (https://en.wikipedia.org/wiki/Polybius_square)
 				-- Used (https://www.dcode.fr/adfgvx-cipher) to try and break it.
-				-- Generic decode without knowing the key is  jv7ph4lucuxgjl1zpix02q5hpg0ztnwbibmmv6lh7b  
+				-- Generic decode without knowing the key is  jv7ph4lucuxgjl1zpix02q5hpg0ztnwbibmmv6lh7b 
+				-- Will try that as the key next CTF
 Misc
 	- All the IPs - 50
 		Message: "We need you to perform geolocation analysis on this list of IPs. We have attributed it to a malicious proxy network. The flag is the prevalent country of origin."
