@@ -1,5 +1,6 @@
 /*
 ** showip.c -- show IP addresses for a host given on the command line
+** Source: https://beej.us/guide/bgnet/html/#what-is-a-socket
 */
 
 #include <stdio.h>
