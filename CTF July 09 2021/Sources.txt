@@ -1,0 +1,10 @@
+https://cybersecurity.fsu.edu/club/wp-content/uploads/2018/03/Introduction-to-Pwn.pdf
+https://blackarch.org/exploitation.html
+https://www.cs.virginia.edu/~evans/cs216/guides/x86.html
+http://128.148.32.110/courses/csci0330/docs/labs/x86_lab1.pdf
+https://unix.stackexchange.com/questions/490371/shell-script-in-netcat-listener-to-talk-with-client
+https://askubuntu.com/questions/1004901/connect-via-netcat-and-send-messages-in-bash-script
+https://www.taniarascia.com/how-to-create-and-use-bash-scripts/
+https://unix.stackexchange.com/questions/355216/getting-output-from-netcat-decoding-it-and-returning-an-output
+https://stackoverflow.com/questions/41522819/netcat-auto-response/41522922
+https://www.usna.edu/Users/cs/wcbrown/courses/si110AY13S/lec/l29/lec.html

@@ -1,0 +1,116 @@
+000000000000068a <main>:
+ 68a:   55                      push   rbp
+ 68b:   48 89 e5                mov    rbp,rsp
+ 68e:   48 83 ec 20             sub    rsp,0x20
+ 692:   89 7d ec                mov    DWORD PTR [rbp-0x14],edi
+ 695:   48 89 75 e0             mov    QWORD PTR [rbp-0x20],rsi
+ 699:   48 8b 45 e0             mov    rax,QWORD PTR [rbp-0x20]
+ 69d:   48 83 c0 08             add    rax,0x8
+ 6a1:   48 8b 00                mov    rax,QWORD PTR [rax]
+ 6a4:   48 89 c7                mov    rdi,rax
+ 6a7:   e8 b4 fe ff ff          call   560 <atoi@plt>
+ 6ac:   89 45 f8                mov    DWORD PTR [rbp-0x8],eax
+ 6af:   8b 45 f8                mov    eax,DWORD PTR [rbp-0x8]
+ 6b2:   35 35 07 00 00          xor    eax,0x735
+ 6b7:   89 45 fc                mov    DWORD PTR [rbp-0x4],eax
+ 6ba:   c1 6d fc 04             shr    DWORD PTR [rbp-0x4],0x4
+ 6be:   81 65 fc 00 ff 00 00    and    DWORD PTR [rbp-0x4],0xff00
+ 6c5:   81 4d fc f0 0f f0 00    or     DWORD PTR [rbp-0x4],0xf00ff0
+ 6cc:   81 75 fc f0 06 00 00    xor    DWORD PTR [rbp-0x4],0x6f0
+ 6d3:   8b 45 fc                mov    eax,DWORD PTR [rbp-0x4]
+ 6d6:   89 c6                   mov    esi,eax
+ 6d8:   48 8d 3d 95 00 00 00    lea    rdi,[rip+0x95]        # 774 <_IO_stdin_used+0x4>
+ 6df:   b8 00 00 00 00          mov    eax,0x0
+ 6e4:   e8 67 fe ff ff          call   550 <printf@plt>
+ 6e9:   b8 00 00 00 00          mov    eax,0x0
+ 6ee:   c9                      leave
+ 6ef:   c3                      ret
+
+
+<main>:
+push   rbp
+mov    rbp,rsp
+sub    rsp,0x20
+mov    DWORD PTR [rbp-0x14],edi
+mov    QWORD PTR [rbp-0x20],rsi
+mov    rax,QWORD PTR [rbp-0x20]
+add    rax,0x8
+mov    rax,QWORD PTR [rax]
+mov    rdi,rax
+call   560 <atoi@plt>
+mov    DWORD PTR [rbp-0x8],eax
+mov    eax,DWORD PTR [rbp-0x8]
+xor    eax,0x735
+mov    DWORD PTR [rbp-0x4],eax
+shr    DWORD PTR [rbp-0x4],0x4
+and    DWORD PTR [rbp-0x4],0xff00
+or     DWORD PTR [rbp-0x4],0xf00ff0
+xor    DWORD PTR [rbp-0x4],0x6f0
+mov    eax,DWORD PTR [rbp-0x4]
+mov    esi,eax
+lea    rdi,[rip+0x95]        # 774 <_IO_stdin_used+0x4>
+mov    eax,0x0
+call   550 <printf@plt>
+mov    eax,0x0
+leave
+ret
+
+
+main:
+    push   rbp
+    mov    rbp,rsp
+    sub    rsp,0x20
+    mov    DWORD PTR [rbp-0x14],edi
+    mov    QWORD PTR [rbp-0x20],rsi
+    mov    rax,QWORD PTR [rbp-0x20]
+    add    rax,0x8
+    mov    rax,QWORD PTR [rax]
+    mov    rdi,rax
+    call   560 <atoi@plt>
+    mov    DWORD PTR [rbp-0x8],eax
+    mov    eax,DWORD PTR [rbp-0x8]
+    xor    eax,0x735
+    mov    DWORD PTR [rbp-0x4],eax
+    shr    DWORD PTR [rbp-0x4],0x4
+    and    DWORD PTR [rbp-0x4],0xff00
+    or     DWORD PTR [rbp-0x4],0xf00ff0
+    xor    DWORD PTR [rbp-0x4],0x6f0
+    mov    eax,DWORD PTR [rbp-0x4]
+    mov    esi,eax
+    lea    rdi,[rip+0x95]        # 774 <_IO_stdin_used+0x4>
+    mov    eax,0x0
+    call   550 <printf@plt>
+    mov    eax,0x0
+    leave
+    ret
+
+
+
+main:
+    push    %rbp
+    mov     %rbp, %rsp
+    sub     %rsp, 0x20
+    mov     (rbp-0x14), %edi
+    mov     (rbp-0x20), %rsi
+    mov     %rax, (rbp-0x20)
+    add     %rax, 0x8
+    mov     %rax, (rax)
+    mov     %rdi, %rax
+    call    560 <atoi@plt>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
