@@ -1,0 +1,229 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fmodern JetBrains Mono;}{\f2\fswiss\fprq2\fcharset0 Liberation Sans;}}
+{\colortbl ;\red0\green0\blue255;\red128\green128\blue128;\red204\green120\blue50;\red169\green183\blue198;\red106\green135\blue89;\red104\green151\blue187;\red165\green194\blue97;}
+{\*\generator Riched20 10.0.19041}\viewkind4\uc1 
+\pard\sa200\sl276\slmult1\b\f0\fs22\lang9\par
+\fs24 Programming:\par
+\fs22\tab - Interpreter - 75\par
+\tab\tab\b0 Message:  "Write an interpreter which will open the file input_stream.bin and execute the instructions encoded within. A successful interpreter will print out the flag. PM @ENS Teddy Kim for scoring."\par
+\tab\tab Hint:  ""\par
+\tab\tab File:  \tab - input_stream.bin\par
+\tab\tab\tab - interpreter.h\par
+\tab\tab\tab - README.md\b\par
+\tab\tab\b0 Notes:\tab\par
+\tab\tab Solution: \b\fs24\par
+\fs22\tab - Software Development - 75\par
+\tab\tab\b0 Message:  "See README. Submit answers via PM to @ENS Teddy Kim. Max of 75 points."\par
+\tab\tab Hint:  ""\par
+\tab\tab File:  \tab - softwaredev.zip\b\par
+\tab\tab\b0 Notes:\tab\par
+\tab\tab Solution: \b\fs24\par
+\fs22\tab - Performance Programming - 300\par
+\tab\tab\b0 Message:  "See README. PM solutions to @ENS Teddy Kim. 25-300 points, depending on the quality of the solution."\par
+\tab\tab Hint:  ""\par
+\tab\tab File:  \tab - benchmark\par
+\tab\tab\tab - checker.py\par
+\tab\tab\tab - README.md\b\par
+\tab\tab\b0 Notes:\tab\par
+\tab\tab Solution: \b\fs24\par
+Pwn: \par
+\fs22\tab - Win - 50\par
+\tab\tab\b0 Message:  "Can you figure out how to win this challenge? Connect to cweaccessionsctf.com:1337."\par
+\tab\tab Hint:  ""\par
+\tab\tab File:  \tab - win\b\par
+\tab\tab\b0 Notes:\tab\par
+\tab\tab Flag: flag\{no_stack_smashing_here\}\par
+\tab\tab Solution: I used strings on the file.  Looking through it, two things stuck out to me, a long string of "Q"s and a shell command "cat flag.txt" right about the initial server response.  I plugged that list of Qs in and got a seg fault.  I cut the number of Qs back hoping to find the number right before it seg faulted but in the process I found the perfect number that ran the cat command.  I telnet'd to the server, dropped those Qs in the input and got the flag.\b\fs24\par
+\fs22\tab - Shell - 75\par
+\tab\tab\b0 Message:  "\par
+I see that NX is disabled on this binary......\par
+Connect to cweaccessionsctf.com:1370.\par
+Note: ASLR is disabled on the server. Check this out to disable it on your local machine: {{\field{\*\fldinst{HYPERLINK https://askubuntu.com/questions/318315/how-can-i-temporarily-disable-aslr-address-space-layout-randomization }}{\fldrslt{https://askubuntu.com/questions/318315/how-can-i-temporarily-disable-aslr-address-space-layout-randomization\ul0\cf0}}}}\f0\fs22 "\par
+\tab\tab Hint:  ""\par
+\tab\tab File:  \tab - shell\b\par
+\tab\tab\b0 Notes:\tab\par
+\tab\tab Solution: \b\fs24\par
+\fs22\tab - Canary - 125\par
+\tab\tab\b0 Message:  "I see that this binary might have a little birdie nesting in it. Can you figure out how to get past it to get to the flag?\par
+Connect to cweaccessionsctf.com:1360."\par
+\tab\tab Hint:  ""\par
+\tab\tab File:  \tab - canary\b\par
+\tab\tab\b0 Notes:\tab Found function read_in called in main, seems to be preventing stack smashing, but there something funny about it.\par
+\tab\tab Solution: \b\fs24\par
+\fs22\par
+\fs24 Forensics:\par
+\fs22\tab - File Ninja - 50\par
+\tab\tab\b0 Message:  "One of our new employees has stopped showing up to work. We think he took the job just to steal our flag, but we have no idea how he got it off his work laptop - we blocked access to most of the internet except developer specific sites. See if you can figure out how he got the flag off the system by analyzing a image of his laptop's filesystem."\par
+\tab\tab Hint:  ""\par
+\tab\tab File:  \tab - backup.iso\par
+\tab\tab Flag:  flag\{g1t_15_c0mplex_pbtrg3hv6d\}\par
+\tab\tab Solution:  I looked around for a bit in the backup.iso file on Windows, dropping random files in Notepad++.  I eventually dropped the .iso file in Kali and extracted it to a separate file.  I ran the command "grep -r flag [extracted backup.iso folder]".  Scrolling through, in DOCUMENT/WORK_FOL/_GIT/CONFIG the line of text "flag = ZmxhZ3tnMXRfMTVfYzBtcGxleF9wYnRyZzNodjZkfQ==" popped up at the end.  I tried dropping it in the answer box as it was but didn't work.  I then used base64decode.org to decode the flag and got the above flag as the answer.\par
+\tab\tab {{\field{\*\fldinst{HYPERLINK https://www.base64decode.org/ }}{\fldrslt{https://www.base64decode.org/\ul0\cf0}}}}\b\f0\fs22\par
+\tab - The New 2.0 - 115\par
+\tab\tab\b0 Message:  "We have been surveilling a known hacker's internet traffic. He mostly just looks at online hacking forums. However, we think he's transmitted a flag to an associate through some means. We can't figure it out, can you?"\par
+\tab\tab Hint:  "You can decrypt TLSv1.2+ traffic using a keylog file."\par
+\tab\tab File:  \tab - capture.pcapng\par
+\tab\tab\tab - sslkeylog.log\b\par
+\tab\tab\b0 Notes:\tab\par
+\tab\tab Solution: \par
+\b\tab - Rabbit Hole - 115\par
+\tab\tab\b0 Message:  "We received a weird email. We deleted it, but you can look at a copy that was made."\par
+\tab\tab Hint:  "Inspect ALL files that you come accross for the flag."\par
+\tab\tab File:  \tab - email.txt\b\par
+\tab\tab\b0 Notes:\tab Decoded some of it.  the file is some kind of PDF file, with a star wars line in it.  "A long time ago in a galaxy far, far away"\par
+\tab\tab Solution: \b\fs24\par
+\par
+Reversing:\par
+\fs22\tab - Input/Output - 50\par
+\tab\tab\b0 Message:  "What output is generated by the x86 code given in input-output.txt if the input is the decimal number 1337?\par
+Note: the flag is just the output decimal number."\par
+\tab\tab Hint:  ""\par
+\tab\tab File:  \tab - input-output.txt\b\par
+\tab\tab\b0 Notes:\tab\par
+\tab\tab Solution: \b\fs24\par
+\fs22\tab - Input/Output - 50\par
+\tab\tab\b0 Message:  "Can you figure out how to unscramble this binary?"\par
+\tab\tab Hint:  ""\par
+\tab\tab File:  \tab - scrambled\b\par
+\tab\tab\b0 Notes:\tab\par
+\tab\tab Solution: \b\fs24\par
+\fs22\tab - Hash - 100\par
+\tab\tab\b0 Message:  "We found x86 code that was used as a hashing function in x86.txt. Create the equivalent C code from the x86 code, and use it to hash the string "Hello World."\par
+Note: The resulting hash value is the flag.\par
+To help you, starter_code.c is provided as a template to reconstruct the x86 code.\par
+Additionally, in hash_output.txt, there are original hash outputs for the substrings of "Hello World" so that you can see if you are on the right track."\par
+\tab\tab Hint:  ""\par
+\tab\tab File:  \tab - hash_output.txt\par
+\tab\tab\tab - starter_code.c\par
+\tab\tab\tab - x86.txt\b\par
+\tab\tab\b0 Notes:\tab\par
+\tab\tab Solution: \b\fs24\par
+\par
+Crypto:\fs22\par
+\tab - Classic - 50\par
+\b0\tab\tab Message: "Decode me! Even Caesar might have had a little trouble."\par
+\tab\tab File: \tab - classic.txt\par
+\tab\tab Solution: Went to the site below, used the following alphabet andshifted through until I go the flag.\par
+\tab\tab\tab {{\field{\*\fldinst{HYPERLINK https://cryptii.com/pipes/caesar-cipher }}{\fldrslt{https://cryptii.com/pipes/caesar-cipher\ul0\cf0}}}}\f0\fs22\par
+\tab\tab\tab Alphabet: !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz\{|\}~\par
+\tab\tab\tab Shift: 89\par
+\tab\tab\tab Flag: flag\{Caes@r_c0uldnt_sH!ft_L!ke_this\}\par
+\b\tab - Diffie-cult - 75\par
+\tab\tab\b0 Message:  "We've managed to intercept a Diffie-Hellman key exchange. We know that p=1009, g=4, A=635, and B=442. We also know that a and b are both two digit numbers. Find a and b.\par
+Note: the flag for this challenge will be in the following format: a,b"\par
+\tab\tab Hint:  "Check this website out if you're unfamiliar with Diffie-Hellman: {{\field{\*\fldinst{HYPERLINK https://www.comparitech.com/blog/information-security/diffie-hellman-key-exchange/ }}{\fldrslt{https://www.comparitech.com/blog/information-security/diffie-hellman-key-exchange/\ul0\cf0}}}}\f0\fs22 "\par
+\tab\tab File:  \tab - classic.txt\b\par
+\tab\tab\b0 Notes:\tab {{\field{\*\fldinst{HYPERLINK https://www.irongeek.com/diffie-hellman.php }}{\fldrslt{https://www.irongeek.com/diffie-hellman.php\ul0\cf0}}}}\f0\fs22\par
+\tab\tab\tab 635 = g^a mod p == 4^a mod 1009 :: a = 252n + 42.\par
+\tab\tab\tab 442 = g^a mod p == 4^b mod 1009 :: b = 252n + 55.\par
+\tab\tab Solution: \par
+\tab\tab\tab Flag: 42,55\b\fs24\par
+\fs22\tab - Rolled - 100\par
+\tab\tab\b0 Message:  "Do you think you can break this crypto that we rolled? Check it out at cweaccessionsctf.com:1350. Note: The flag is in flag format, and consists only of lowercase letters, plus '\{' and '\}'."\par
+\tab\tab Hint:  ""\par
+\tab\tab File:  \tab\b\par
+\tab\tab\b0 Notes:\tab\par
+\tab\tab Solution: \b\fs24\par
+\par
+Misc:\par
+\fs22\tab - Socketz - 75\par
+\tab\tab\b0 Message:  "Connect to cweaccessionsctf.com:1340 and see if you can get a flag! I'd recommend you'd script this though, unless you really want to do 500 math problems."\par
+\tab\tab Hint:  ""\par
+\tab\tab File:  \tab\b\par
+\tab\tab\b0 Notes:\tab I tried connecting to the socket with a C program but was having problems send a response back.  I tried using Python to do the same thing but ran into the same problem.  I tried just net-catting to it and was able to send answer and have them be accepted.  I attempted to write a batch script to get input in from netcat, parse it for the equation and send the answer back but ran out of time to figure it out.  \par
+/*\par
+ ============================================================================\par
+ Name        : Socketz.c\par
+ Author      :\par
+ Version     :\par
+ Copyright   : Your copyright notice\par
+ Description : Hello World in C, Ansi-style\par
+ ============================================================================\par
+ */\par
+\par
+/****************** CLIENT CODE ****************/\par
+\par
+#include <stdio.h>\par
+#include <sys/socket.h>\par
+#include <netinet/in.h>\par
+#include <string.h>\par
+\par
+int main()\{\par
+int clientSocket;\par
+char buffer[1024];\par
+int sendBuffer = 68;\par
+char charSendBuffer[2];\par
+char* stringBuff = "68\\0";\par
+struct sockaddr_in serverAddr;\par
+socklen_t addr_size;\par
+\par
+/*---- Create the socket. The three arguments are: ----*/\par
+/* 1) Internet domain 2) Stream socket 3) Default protocol (TCP in this case) */\par
+clientSocket = socket(PF_INET, SOCK_STREAM, 0);\par
+\par
+/*---- Configure settings of the server address struct ----*/\par
+/* Address family = Internet */\par
+serverAddr.sin_family = AF_INET;\par
+/* Set port number, using htons function to use proper byte order */\par
+serverAddr.sin_port = htons(1340);\par
+/* Set IP address to localhost */\par
+serverAddr.sin_addr.s_addr = inet_addr("52.227.157.244");\par
+/* Set all bits of the padding field to 0 */\par
+memset(serverAddr.sin_zero, '\\0', sizeof serverAddr.sin_zero);\par
+\par
+/*---- Connect the socket to the server using the address struct ----*/\par
+addr_size = sizeof serverAddr;\par
+connect(clientSocket, (struct sockaddr *) &serverAddr, addr_size);\par
+\par
+/*---- Read the message from the server into the buffer ----*/\par
+recv(clientSocket, buffer, 1024, 0);\par
+printf("-- %s",buffer);\par
+\par
+sendBuffer = 68;\par
+charSendBuffer[0] = '6';\par
+charSendBuffer[1] = '8';\par
+// sendBuffer[1] = 0;\par
+send(clientSocket, &stringBuff, sizeof(stringBuff), 0);\par
+for(int i = 0; i < sizeof(buffer); i++)\{\par
+buffer[i] = '\\0';\par
+\}\par
+recv(clientSocket, buffer, 1024, 0);\par
+/*---- Print the received message ----*/\par
+printf("-- %s",buffer);\par
+\par
+//  for(int i = 0; i < sizeof(buffer); i++) \{\par
+//  printf("Byte: %d   --  Character: %c\\n", i, buffer[i]);\par
+//  \}\par
+\par
+return 0;\par
+\}\par
+\par
+\par
+
+\pard\box\brdrdash\brdrw0 \sa200\sl276\slmult1\cf2\f1\fs20 #!/usr/bin/python           # This is client.py file\line\line\line\cf3 import \cf4 socket               \cf2 # Import socket module\line\line\cf4 s = socket.socket()         \cf2 # Create a socket object\line\cf4 host = socket.gethostbyname(\cf5 'cweaccessionsctf.com'\cf4 )   \cf2 # Get local machine name\line\cf4 port = \cf6 1340                \cf2 # Reserve a port for your service.\line\line # create a socket at client side\line # using TCP / IP protocol\line\cf4 s = socket.socket(socket.AF_INET\cf3 , \cf4 socket.SOCK_STREAM)\line\line x = \cf6 68\line\cf4 st = str(x)\line byt = st.encode()\line\line\line s.connect((host\cf3 , \cf4 port))\line print(s.recv(\cf6 1024\cf4 ))\line\cf2 # int_val = 30 + 38\line # byte_val = int_val.to_bytes(2, 'big')\line # print('Byte: ')\line # print(byte_val)\line # print('Int: ')\line # print(int_val)\line\cf4 s.send(\cf7 b'\cf3\\x00\\x44\cf7 D'\cf4 )\line print(s.recv(\cf6 1024\cf4 ))\line\line s.close()                     \cf2 # Close the socket when done\par
+
+\pard\sa200\sl276\slmult1\cf0\f0\fs22\par
+\tab\tab Solution: \b\fs24\par
+\fs22\par
+\tab - Of Least Significance - 75\par
+\tab\tab\b0 Message:  "There's a flag hidden inside the given text! Can you figure out how to extract it?"\par
+\tab\tab Hint:  "I would do some research on stegonography."\par
+\tab\tab File:  \tab - theLeastSignificant.txt\b\par
+\tab\tab\b0 Notes:\tab\par
+\tab\tab Solution: \b\par
+\tab - Closest - 75\par
+\tab\tab\b0 Message:  " There are a lot of interesting people living in Viriginia currently. Can you figure out which of the people listed in the CSV file lives the closest to the coordinates 37.065984, -79.601172?\par
+Note: The flag is just the full name of the person closest to the coordinates.\par
+\tab\tab Hint:  "I highly recommend checking out this site: {{\field{\*\fldinst{HYPERLINK https://geocoding.geo.census.gov/geocoder/Geocoding_Services_API.pdf }}{\fldrslt{https://geocoding.geo.census.gov/geocoder/Geocoding_Services_API.pdf\ul0\cf0}}}}\f0\fs22 "\par
+\tab\tab File:  \tab - Addresses.csv\par
+\tab\tab Notes:\tab {{\field{\*\fldinst{HYPERLINK https://en.wikipedia.org/wiki/List_of_cities_and_counties_in_Virginia }}{\fldrslt{https://en.wikipedia.org/wiki/List_of_cities_and_counties_in_Virginia\ul0\cf0}}}}\f0\fs22\par
+\tab {{\field{\*\fldinst{HYPERLINK https://www.google.com/maps/place/37%C2%B003'57.5%22N+79%C2%B036'04.2%22W/@37.0747944,-79.6887828,12z/data=!4m5!3m4!1s0x0:0x0!8m2!3d37.065984!4d-79.601172 }}{\fldrslt{https://www.google.com/maps/place/37%C2%B003'57.5%22N+79%C2%B036'04.2%22W/@37.0747944,-79.6887828,12z/data=!4m5!3m4!1s0x0:0x0!8m2!3d37.065984!4d-79.601172\ul0\cf0}}}}\f0\fs22\par
+{{\field{\*\fldinst{HYPERLINK https://geocoding.geo.census.gov/geocoder/Addresses.csv }}{\fldrslt{https://geocoding.geo.census.gov/geocoder/Addresses.csv\ul0\cf0}}}}\f0\fs22\par
+\tab\tab Flag: \f2\fs20 Richard Howe\par
+\tab\tab\f0\fs22 Solution: Read through the link from the hint.  At the bottom was a section for batch geocoding in formats that include CSV files, which is what was given in the problem.  I looked at the CSV given a bit, more than a thousand entries.  The batch geocoding said the file must be in a unique ID, street address, city, state, zip order.  Street address was the only required field, everything else could be a null value.  Wasn't sure what to use for a null value.  I punched the coordinates into google maps and it put the location in the middle of a lake in Virginia.  I made a copy of the the addresses file and deleted the names column.  Pasted "Viginia" in the all the cells in the columns next to the city cells and a space in the column for zip code.  I got Malformed input file or file not of type CSV error in the output file. it gave an example of a good file to use ({{\field{\*\fldinst{HYPERLINK https://geocoding.geo.census.gov/geocoder/Addresses.csv }}{\fldrslt{https://geocoding.geo.census.gov/geocoder/Addresses.csv\ul0\cf0}}}}\f0\fs22 ).  I noticed I forgot the unique identifier column and replaced the names as unique numbers (just incremented from 1 every cell).  I got a better result with no errors, but didn't get any matches.  I put the value 10000 in as the zipcode value and ran again.  The two closest coordinates were in Wirtz VA, and of those, looking it up in the original address list was Richard Howe.  \par
+The command I ran was "curl --form addressFile=@addresses_ready.csv --form benchmark=2020 {{\field{\*\fldinst{HYPERLINK https://geocoding.geo.census.gov/geocoder/locations/addressbatch }}{\fldrslt{https://geocoding.geo.census.gov/geocoder/locations/addressbatch\ul0\cf0}}}}\f0\fs22  --output geocoderesult.csv"\par
+\par
+\tab\tab\tab\b\fs24\par
+\fs22\par
+\b0\par
+}
+ 

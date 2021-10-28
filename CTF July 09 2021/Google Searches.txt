@@ -1,0 +1,13 @@
+ways to pwn a binary
+linux xxd
+online assembly to c converter
+how to process netcat responses from a server
+how to automate client nc response
+message hidden in least significant bits of text
+online steganography text file
+
+
+
+
+
+
