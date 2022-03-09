@@ -99,7 +99,21 @@ main:
     call    560 <atoi@plt>
 
 
+// Type your code here, or load an example.
+#include <stdio.h>
+#include <stdlib.h>
 
+int main(int argv, char **argc) {
+    int input;
+    input = atoi(argc[1]);
+    uint input2 = input ^ 1845;
+    input2 = input2 >> 0x4;
+    input2 &= 0xff00;
+    input2 |= 0xf00ff0;
+    input2 ^= 0x6f0;
+    printf("%d", input);
+    return input;
+}
 
 
 
